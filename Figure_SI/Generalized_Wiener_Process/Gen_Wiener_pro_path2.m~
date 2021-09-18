@@ -1,0 +1,28 @@
+tic
+clc
+clear
+close all
+
+%%  Generate SDE data
+randn('state',100)
+X(1)=0;Y(1)=0; Z(1)=0;%initial value
+T=1000;N=2.5*10^4;dt=T/N; % interval;number of data; number of bin
+dw=sqrt(dt)*randn(1,N);  % generate stochastic path
+Xem=zeros(1,N);   
+for i=1:N                    % the E-M method to solve SDE  
+     X(i+1)=X(i)+dt*(-3)+sqrt(100)*dw(i);
+     Y(i+1)=Y(i)+dt*(-3);
+     Z(i+1)=sqrt(100)*sum(dw(1:i));
+end
+t=[0:dt:T];  % Data
+figure('color',[1 1 1]);
+
+%% Plot path only
+plot(t,X,'linewidth',3);
+
+set(gca,'xtick',0:200:1000,'fontsize',12,'linewidth',1.2) 
+set(gca,'ytick',-3500:1000:500,'fontsize',12)
+xlabel('$t$','interpreter','latex','fontsize',20)
+ylabel('$x(t)$','interpreter','latex','fontsize',20)
+print('GBM_Path','-depsc')
+%Xtemp=Xtemp+dt*(2-Xtemp)+2^(0.5)*winc;  T=1000;N=2.5*10^4;dt=T/N;
