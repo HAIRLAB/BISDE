@@ -1,5 +1,5 @@
 # BISDE
-Code for " Noise-Driven Discovery of Stochastic Differential Equations".
+Code for " Data-driven discovery of stochastic differential equations".
 
 **1:  Test platform**
 
